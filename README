@@ -1,0 +1,32 @@
+---      ALGORITMI PARALELI SI DISTRIBUITI     ---
+  Tema #2 Manager de comenzi de Black Friday in Java
+
+  331 CC - Pavel Calin Gabriel
+
+class Tema2
+    - in functia main am pornit cele P thread-uri de
+nivelul 1
+    - am instantiat ExecutorService-ul pe care l-am
+dat ca parametru in fiecare thread de nivel 1
+    - in inQueue am retinut numarul de task-uri din pool
+    - am ales implementarea thread-urilor cu Runnable
+    - ca mecanism de paralelizare am folosit modelul
+Replicated Workers
+
+class MyThreadLevel1
+    - thread-urile de nivel 1 cauta in paralel in fisier
+comenzi ce le sunt asociate in functie de id
+    - se verifica daca comanda nu a fost abandonata
+    - in cazul in care comanda este vailda se adauga in pool-ul
+de task-uri
+    - cand o comanda are toate produsele "shipped" aceasta este
+adaugata in fisierul de comenzi terminate
+
+class MyThreadLevel2
+    - thread-ul de nivel 2 cauta in paralel in fisier produsul
+asignat lui de catre thread-ul parinte
+    - cand produsul este gasit este scris in fisierul de out
+    - se verifica daca mai sunt prezente task-uri in pool ,daca
+nu mai sunt , executor-ul se inchide
+
+Timp alocat: ~15h
